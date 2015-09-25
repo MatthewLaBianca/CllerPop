@@ -4,7 +4,7 @@ using System.Collections;
 
 public class GradientOn : MonoBehaviour
 {
-    private float duration = 1.0f;
+    private float duration = 1f;
     private float smoothness = 0.02f;
     // Use this for initialization
     void Start()

@@ -14,13 +14,14 @@ public class BalloonPop : MonoBehaviour {
 	public AudioClip popSound;
 	private AudioSource source;
 
-    public BonusManager bonusMan;
+    //public BonusManager bonusMan;
 
     private int maxNum;
     
 	private NumberManager numMan;
 
 	public DartManager dartMan;
+    private BonusManager bonusMan;
 
     //public GameObject bonusCanvas;
 
@@ -29,8 +30,8 @@ public class BalloonPop : MonoBehaviour {
         maxNum = 41;
 		source = GetComponent<AudioSource>();
 		numMan = GameObject.Find ("ScriptHolder").GetComponent<NumberManager> ();
-
-	}
+        bonusMan = GameObject.Find("ScriptHolder").GetComponent<BonusManager>();
+    }
 	void Update()
 	{
 
