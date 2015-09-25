@@ -14,12 +14,19 @@ public class BalloonPop : MonoBehaviour {
 	public AudioClip popSound;
 	private AudioSource source;
 
+    public BonusManager bonusMan;
+
+    private int maxNum;
+    
 	private NumberManager numMan;
 
 	public DartManager dartMan;
 
+    //public GameObject bonusCanvas;
+
 	void Start(){
 		i = 0;
+        maxNum = 41;
 		source = GetComponent<AudioSource>();
 		numMan = GameObject.Find ("ScriptHolder").GetComponent<NumberManager> ();
 
@@ -42,12 +49,13 @@ public class BalloonPop : MonoBehaviour {
                 splatter1.GetComponent<Renderer>().enabled = true;
                 splatter2.GetComponent<Renderer>().enabled = true;
 
-                int randomNumber = Random.Range(1, 40);
+                //int randomNumber = Random.Range(1, maxNum);
+                int randomNumber = 41;
                 //This will check to make sure only unique numbers are under balloons!
                 while (numMan.numbers.Contains(randomNumber))
                 {
                     //keep the numbers in bounds
-                    if (randomNumber < 40)
+                    if (randomNumber < maxNum)
                     {
                         randomNumber++;
                     }
@@ -65,6 +73,11 @@ public class BalloonPop : MonoBehaviour {
                 if (Number != null)
                 {
                     Instantiate(Number, new Vector3(this.transform.position.x, this.transform.position.y, 40), Quaternion.identity);
+                }
+                if(randomNumber >= 41)
+                {
+                    bonusMan.startBonusGame = true;
+                    Debug.Log("YAY BONUS");
                 }
                 numMan.CheckMatches();
                 SwitchBalloon(false);

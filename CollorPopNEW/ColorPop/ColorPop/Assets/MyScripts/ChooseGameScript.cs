@@ -44,7 +44,7 @@ public class ChooseGameScript : MonoBehaviour {
 	public Button maxTickets;
 	public Text amntOfTixTxt;
 
-	public Count darts = new Count(1,10);
+	public Count darts = new Count(3,5);
 	public Count tickets = new Count(1,5);
 
 	// Use this for initialization
