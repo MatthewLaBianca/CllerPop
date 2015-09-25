@@ -19,11 +19,11 @@ public class NumberManager : MonoBehaviour {
 	public DartManager dartMan;
     public TicketManager tixMan;
 
-    private int i;
+    public int i;
 
-    private int ticketNumber;
+    public int ticketNumber;
 
-    private Text TicOneTxt;
+    public Text TicOneTxt;
 
 
 	// Use this for initialization
@@ -48,6 +48,15 @@ public class NumberManager : MonoBehaviour {
         
     }
 
+    public void Replay()
+    {
+        numsToMatch.first.color = Color.white;
+        numsToMatch.second.color = Color.white;
+        numsToMatch.third.color = Color.white;
+        numsToMatch.fourth.color = Color.white;
+        numsToMatch.fifth.color = Color.white;
+
+    }
     public int GetNumbersMatched()
     {
         return numbersMatched;
@@ -81,7 +90,8 @@ public class NumberManager : MonoBehaviour {
 				firstSpot = true;
 			}
 		}
-		if(numbers.Contains(numsToMatch.secondNumber)){
+        else numsToMatch.first.color = Color.white;
+        if (numbers.Contains(numsToMatch.secondNumber)){
 			numsToMatch.second.color = Color.green;
 			if(!secSpot)
 			{
@@ -89,7 +99,8 @@ public class NumberManager : MonoBehaviour {
 				secSpot = true;
 			}
 		}
-		if(numbers.Contains(numsToMatch.thirdNumber)){
+        else numsToMatch.second.color = Color.white;
+        if (numbers.Contains(numsToMatch.thirdNumber)){
 			numsToMatch.third.color = Color.green;
 			if(!thirSpot)
 			{
@@ -97,7 +108,8 @@ public class NumberManager : MonoBehaviour {
 				thirSpot = true;
 			}
 		}
-		if(numbers.Contains(numsToMatch.fourthNumber)){
+        else numsToMatch.third.color = Color.white;
+        if (numbers.Contains(numsToMatch.fourthNumber)){
 			numsToMatch.fourth.color = Color.green;
 			if(!fourSpot)
 			{
@@ -105,14 +117,17 @@ public class NumberManager : MonoBehaviour {
 				fourSpot = true;	
 			}
 		}
-		if(numbers.Contains(numsToMatch.fifthNumber)){
-			numsToMatch.fifth.color = Color.green;
-			if(!fifSpot)
-			{
-				numbersMatched++;
-				fifSpot = true;
-			}
-		}
+        else numsToMatch.fourth.color = Color.white;
+        if (numbers.Contains(numsToMatch.fifthNumber))
+        {
+            numsToMatch.fifth.color = Color.green;
+            if (!fifSpot)
+            {
+                numbersMatched++;
+                fifSpot = true;
+            }
+        }
+        else numsToMatch.fifth.color = Color.white;
 	}
 
 }

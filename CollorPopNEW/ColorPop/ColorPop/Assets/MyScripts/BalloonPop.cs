@@ -50,8 +50,8 @@ public class BalloonPop : MonoBehaviour {
                 splatter1.GetComponent<Renderer>().enabled = true;
                 splatter2.GetComponent<Renderer>().enabled = true;
 
-                //int randomNumber = Random.Range(1, maxNum);
-                int randomNumber = 41;
+                int randomNumber = Random.Range(1, maxNum);
+                //int randomNumber = 41;
                 //This will check to make sure only unique numbers are under balloons!
                 while (numMan.numbers.Contains(randomNumber))
                 {

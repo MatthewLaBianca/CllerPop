@@ -66,7 +66,7 @@ public class ChooseGameScript : MonoBehaviour {
 	public void SetAmountOfTix()
 	{
 		TicketManager.SetTix(amntOfTix);
-		Debug.Log(TicketManager.GetTix());
+		//Debug.Log(TicketManager.GetTix());
 	}
 	//Dart Stuff
 	private void DartStuff()

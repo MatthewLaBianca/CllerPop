@@ -73,6 +73,13 @@ public class SetGrid : MonoBehaviour {
         }
        
     }
+
+    public void ReplayGrid()
+    {
+        numManager.ticketNumber = 1;
+        numManager.TicOneTxt.text = "";
+        StartCoroutine(DestroyAllBalloons());
+    }
     IEnumerator DestroyAllBalloons()
     {
         GameObject[] balloonsNew;

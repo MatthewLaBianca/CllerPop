@@ -32,4 +32,9 @@ public class DartManager : MonoBehaviour {
         redoGrid.BuildGrid();
         darts = kDarts;
     }
+    public void ReplayDarts()
+    {
+        redoGrid.ReplayGrid();
+        darts = kDarts;
+    }
 }

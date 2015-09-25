@@ -28,6 +28,12 @@ public class TimeManager : MonoBehaviour {
 		StartTimer();
 	}
 
+    public void ResetTimer()
+    {
+        minutes = 2;
+        seconds = 59;
+    }
+
 	void StartTimer()
 	{
 		seconds -= Time.deltaTime;
