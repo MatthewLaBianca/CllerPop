@@ -28,12 +28,16 @@ public class ChooseGameScript : MonoBehaviour {
     public class Money
     {
         private int amountDue;
-
-        public Money(int required)
+        private int max;
+        public Money(int required, int setmax)
         {
             amountDue = required;
+            max = setmax;
         }
-
+        public void Max()
+        {
+            amountDue = max;
+        }
         public int GetMoneyDue()
         {
             return amountDue;
@@ -81,7 +85,7 @@ public class ChooseGameScript : MonoBehaviour {
 
 	public Count darts = new Count(3,5);
 	public Count tickets = new Count(1,5);
-    public Money money = new Money(1);
+    public Money money = new Money(1,3);
 
     //private int amountDue;
     public Text moneyText;
@@ -148,6 +152,7 @@ public class ChooseGameScript : MonoBehaviour {
 	public void DartsMaxBet()
 	{
 		amntOfDarts = darts.GetMax ();
+        money.Max();
 	}
 	//End Dart Stuff
 

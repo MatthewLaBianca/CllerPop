@@ -27,7 +27,7 @@ public class BalloonPop : MonoBehaviour {
 
 	void Start(){
 		i = 0;
-        maxNum = 41;
+        maxNum = 40;
 		numMan = GameObject.Find ("ScriptHolder").GetComponent<NumberManager> ();
         bonusMan = GameObject.Find("ScriptHolder").GetComponent<BonusManager>();
     }
