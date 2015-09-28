@@ -14,7 +14,7 @@ public class SetGrid : MonoBehaviour {
 	public int Yspacing = 4;
 	//public int blockWidth; 
 	private GameObject [,] grid = new GameObject[10,10];
-
+    public AudioSource audioSource;
     public NumberManager numManager;
     public TicketManager tixMan;
 
@@ -49,6 +49,7 @@ public class SetGrid : MonoBehaviour {
             for (int y = 0; y < Height; y++)
             {
                 yield return new WaitForSeconds(.003f);
+                audioSource.Play();
                 GameObject gridPiece = (GameObject)Instantiate(balloons);
                 //gridPiece.transform.position = new Vector3(gridPiece.transform.position.x +x*spacing,
                 //                                        gridPiece.transform.position.y +y*spacing, 40);
@@ -101,6 +102,7 @@ public class SetGrid : MonoBehaviour {
             for (int y = 0; y < Height; y++)
             {
                 yield return new WaitForSeconds(.003f);
+                audioSource.Play();
                 GameObject gridPiece = (GameObject)Instantiate(balloons);
                 //gridPiece.transform.position = new Vector3(gridPiece.transform.position.x +x*spacing,
                 //                                        gridPiece.transform.position.y +y*spacing, 40);

@@ -12,7 +12,7 @@ public class BalloonPop : MonoBehaviour {
 	public GameObject splatter2;
 
 	public AudioClip popSound;
-	private AudioSource source;
+	public AudioSource source;
 
     //public BonusManager bonusMan;
 
@@ -28,7 +28,6 @@ public class BalloonPop : MonoBehaviour {
 	void Start(){
 		i = 0;
         maxNum = 41;
-		source = GetComponent<AudioSource>();
 		numMan = GameObject.Find ("ScriptHolder").GetComponent<NumberManager> ();
         bonusMan = GameObject.Find("ScriptHolder").GetComponent<BonusManager>();
     }
@@ -43,7 +42,7 @@ public class BalloonPop : MonoBehaviour {
         {
             if (!numMan.OutOfDarts)
             {
-                //source.Play ();
+                source.Play ();
                 colors = Random.Range(1, 4);
                 splatter(colors);
 
