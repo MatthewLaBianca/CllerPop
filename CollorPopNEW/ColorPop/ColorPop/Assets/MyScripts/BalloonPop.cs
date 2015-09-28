@@ -46,10 +46,19 @@ public class BalloonPop : MonoBehaviour {
                 colors = Random.Range(1, 4);
                 splatter(colors);
 
-                splatter1.GetComponent<Renderer>().enabled = true;
-                splatter2.GetComponent<Renderer>().enabled = true;
+                //splatter1.GetComponent<Renderer>().enabled = true;
+                //splatter2.GetComponent<Renderer>().enabled = true;
+
+                GameObject splatterd = Resources.Load("P" + Random.Range(1,15).ToString(), typeof(GameObject)) as GameObject;
+                if (splatterd != null)
+                {
+                    Debug.Log("SPLATTAD");
+                    Instantiate(splatterd, new Vector3(this.transform.position.x, this.transform.position.y, 42), Quaternion.identity);
+                }
 
                 int randomNumber = Random.Range(1, maxNum);
+                //int randomNumber = 41;
+
                 //int randomNumber = 41;
                 //This will check to make sure only unique numbers are under balloons!
                 while (numMan.numbers.Contains(randomNumber))

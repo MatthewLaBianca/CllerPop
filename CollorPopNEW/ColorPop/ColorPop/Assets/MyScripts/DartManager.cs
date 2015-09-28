@@ -27,6 +27,10 @@ public class DartManager : MonoBehaviour {
 	public int GetDarts(){
 		return darts;
 	}
+    public int GetInitDarts()
+    {
+        return kDarts;
+    }
     public void ResetDarts()
     {
         redoGrid.BuildGrid();
