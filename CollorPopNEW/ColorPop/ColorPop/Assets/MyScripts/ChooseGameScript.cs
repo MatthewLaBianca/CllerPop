@@ -25,7 +25,42 @@ public class ChooseGameScript : MonoBehaviour {
 		}
 	}
 
-	public DartManager PopScript;
+    public class Money
+    {
+        private int amountDue;
+
+        public Money(int required)
+        {
+            amountDue = required;
+        }
+
+        public int GetMoneyDue()
+        {
+            return amountDue;
+        }
+        public void MoreMoney()
+        {
+            amountDue++;
+        }
+        public void LessMoney()
+        {
+            amountDue--;
+        }
+
+        public int GetTotal(int tickets)
+        {
+
+            return amountDue * tickets;
+        }
+        public string GetTotalInStringForm(int tickets)
+        {
+            string amnt = "$" + GetTotal(tickets).ToString();
+            return amnt;
+        }
+
+    }
+
+    public DartManager PopScript;
 	public TicketManager TicketManager;
 
 	//Dart Stuff
@@ -46,18 +81,25 @@ public class ChooseGameScript : MonoBehaviour {
 
 	public Count darts = new Count(3,5);
 	public Count tickets = new Count(1,5);
+    public Money money = new Money(1);
+
+    //private int amountDue;
+    public Text moneyText;
+
+    
 
 	// Use this for initialization
 	void Start () {
 		amntOfDarts = darts.GetMin();
 		amntOfTix = 1;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		DartStuff ();
 		TicketStuff ();
-
+        MoneyStuff();
 	}
 	public void SetAmountOfDarts()
 	{
@@ -68,6 +110,11 @@ public class ChooseGameScript : MonoBehaviour {
 		TicketManager.SetTix(amntOfTix);
 		//Debug.Log(TicketManager.GetTix());
 	}
+    //Money Stuff
+    private void MoneyStuff()
+    {
+        moneyText.text = money.GetTotalInStringForm(amntOfTix);
+    }
 	//Dart Stuff
 	private void DartStuff()
 	{
@@ -90,10 +137,12 @@ public class ChooseGameScript : MonoBehaviour {
 	public void AddDarts()
 	{
 		amntOfDarts++;
+        money.MoreMoney();
 	}
 	public void SubtractDarts()
 	{
 		amntOfDarts--;
+        money.LessMoney();
 	}
 
 	public void DartsMaxBet()
