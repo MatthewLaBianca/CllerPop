@@ -38,7 +38,6 @@ public class NumberManager : MonoBehaviour {
 		fourSpot = false;
 		fifSpot = false;
         i = 0;
-
         ticketNumber = 1;
 	}
 	
