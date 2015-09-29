@@ -22,6 +22,7 @@ public class LoseScript : MonoBehaviour {
 
     public class WinningStuff
     {
+        //this class will allow you to check if and how much people will win
         private int numOfDarts;
         private int actualPrize;
         private string winLoseStrng;
@@ -49,7 +50,7 @@ public class LoseScript : MonoBehaviour {
         public int GetWinnings(int matches)
         {
             
-
+            //check how much you win
             switch (numOfDarts)
             {
                 case 3:
@@ -69,11 +70,13 @@ public class LoseScript : MonoBehaviour {
                     {
                         actualPrize = 1;
                         winLoseStrng = winString;
+                        winLoseColor = Color.green;
                     }
                     if(matches == 3)
                     {
                         actualPrize = 5;
                         winLoseStrng = winString;
+                        winLoseColor = Color.green;
                     }
                     break;
                 case 4:
@@ -93,16 +96,19 @@ public class LoseScript : MonoBehaviour {
                     {
                         actualPrize = 1;
                         winLoseStrng = winString;
+                        winLoseColor = Color.green;
                     }
                     else if (matches == 3)
                     {
                         actualPrize = 2;
                         winLoseStrng = winString;
+                        winLoseColor = Color.green;
                     }
                     else if (matches == 4)
                     {
                         actualPrize = 25;
                         winLoseStrng = winString;
+                        winLoseColor = Color.green;
                     }
                     break;
                 case 5:
@@ -116,26 +122,31 @@ public class LoseScript : MonoBehaviour {
                     {
                         actualPrize = 1;
                         winLoseStrng = winString;
+                        winLoseColor = Color.green;
                     }
                     else if (matches == 2)
                     {
                         actualPrize = 2;
                         winLoseStrng = winString;
+                        winLoseColor = Color.green;
                     }
                     else if (matches == 3)
                     {
                         actualPrize = 10;
                         winLoseStrng = winString;
+                        winLoseColor = Color.green;
                     }
                     else if (matches == 4)
                     {
                         actualPrize = 20;
                         winLoseStrng = winString;
+                        winLoseColor = Color.green;
                     }
                     else if (matches == 5)
                     {
                         actualPrize = 50;
                         winLoseStrng = winString;
+                        winLoseColor = Color.green;
                     }
                     break;
 
@@ -149,17 +160,17 @@ public class LoseScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        dartMan = GameObject.Find("ScriptHolder").GetComponent<DartManager>();
-        
+        dartMan = GameObject.Find("ScriptHolder").GetComponent<DartManager>();  
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        winningstuff.SetDarts(dartMan.GetInitDarts());
-        matches.text = numMan.GetNumbersMatched().ToString();
-        winnings.text = "$" + winningstuff.GetWinnings(numMan.GetNumbersMatched()).ToString();
-        winOrLose.color = winningstuff.GetColor();
-        winOrLose.text = winningstuff.GetWinLoseString();
+        
+        winningstuff.SetDarts(dartMan.GetInitDarts());          //this tells the Winnings class how many darts there were at the beginning
+        matches.text = numMan.GetNumbersMatched().ToString();   //how many matches were there?
+        winnings.text = "$" + winningstuff.GetWinnings(numMan.GetNumbersMatched()).ToString();  //Output the winnings
+        winOrLose.color = winningstuff.GetColor();              //win or lose color for the winner/loser text
+        winOrLose.text = winningstuff.GetWinLoseString();       //display the text for winner/Loser on screen
 	}
 
 
@@ -168,6 +179,7 @@ public class LoseScript : MonoBehaviour {
     public void Replay()
     {
         //What happens when the replay button is pressed
+        dartMan.ReplayDarts();
         numMan.OutOfDarts = false;
         numMan.OutOfTix = false;
         tic1.text = "";
@@ -179,7 +191,6 @@ public class LoseScript : MonoBehaviour {
         //numMan.ResetText();
         if (!numMan.OutOfTix && !numMan.OutOfTix)
         {
-            dartMan.ReplayDarts();
             numMan.i = 0;
             numMan.numbers.Clear();
             numMan.ticketNumber = 1;
