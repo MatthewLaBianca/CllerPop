@@ -28,7 +28,7 @@ public class LoseScript : MonoBehaviour {
         private string winLoseStrng;
         private Color winLoseColor;
         private string winString = "WINNER!";
-        private string loseString = "Loser";
+        private string loseString = "Try Again";
         public WinningStuff()
         {
             winLoseColor = Color.green;

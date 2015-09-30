@@ -69,7 +69,10 @@ public class NumberManager : MonoBehaviour {
         }
         TicOneTxt.text += numbers[i];
         TicOneTxt.text += "-";
-        i++;
+        if (!OutOfTix)
+        {
+            i++;
+        }
 		if(!OutOfDarts)
 		{
 			if(dartMan.GetDarts() <= 1)

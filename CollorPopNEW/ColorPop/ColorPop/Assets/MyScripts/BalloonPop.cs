@@ -43,7 +43,7 @@ public class BalloonPop : MonoBehaviour {
             if (!numMan.OutOfDarts)
             {
                 source.Play ();
-                colors = Random.Range(1, 4);
+                //colors = Random.Range(1, 4);
                 splatter(colors);
 
                 //splatter1.GetComponent<Renderer>().enabled = true;
@@ -53,6 +53,10 @@ public class BalloonPop : MonoBehaviour {
                 if (splatterd != null)
                 {
                     Debug.Log("SPLATTAD");
+                    float rndSize = Random.Range(1.5f, 2.5f);
+                    float rndRot = Random.Range(0, 360);
+                    splatterd.transform.localScale = new Vector3(rndSize, rndSize, rndSize);
+                    splatterd.transform.rotation = new Quaternion(0, 0, rndRot, 0);
                     Instantiate(splatterd, new Vector3(this.transform.position.x, this.transform.position.y, 42), Quaternion.identity);
                 }
 
