@@ -56,6 +56,7 @@ public class SetGrid : MonoBehaviour {
                 //                                        gridPiece.transform.position.y +y*spacing, 40);
                 gridPiece.transform.position = new Vector3(refrenceBallon.transform.position.x + x * Xspacing,
                                                            refrenceBallon.transform.position.y + y * Yspacing, 40);
+                gridPiece.transform.localScale = new Vector3(Random.Range(.65f, .9f), Random.Range(.65f, .9f), Random.Range(.65f, .9f));
                 grid[x, y] = gridPiece;
             }
         }
@@ -110,6 +111,8 @@ public class SetGrid : MonoBehaviour {
                 //                                        gridPiece.transform.position.y +y*spacing, 40);
                 gridPiece.transform.position = new Vector3(refrenceBallon.transform.position.x + x * Xspacing,
                                                            refrenceBallon.transform.position.y + y * Yspacing, 40);
+                gridPiece.transform.localScale = new Vector3(Random.Range(.65f, .9f), Random.Range(.65f, .9f), Random.Range(.65f, .9f));
+
                 grid[x, y] = gridPiece;
             }
         }
@@ -145,6 +148,8 @@ public class SetGrid : MonoBehaviour {
                 //                                        gridPiece.transform.position.y +y*spacing, 40);
                 gridPiece.transform.position = new Vector3(refrenceBallon.transform.position.x + x * Xspacing,
                                                            refrenceBallon.transform.position.y + y * Yspacing, 40);
+                gridPiece.transform.localScale = new Vector3(Random.Range(.65f, .9f), Random.Range(.65f, .9f), Random.Range(.65f, .9f));
+
                 grid[x, y] = gridPiece;
             }
         }

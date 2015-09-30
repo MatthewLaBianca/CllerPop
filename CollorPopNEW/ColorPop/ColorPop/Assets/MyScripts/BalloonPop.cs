@@ -57,7 +57,7 @@ public class BalloonPop : MonoBehaviour {
                     float rndRot = Random.Range(0, 360);
                     splatterd.transform.localScale = new Vector3(rndSize, rndSize, rndSize);
                     splatterd.transform.rotation = new Quaternion(0, 0, rndRot, 0);
-                    Instantiate(splatterd, new Vector3(this.transform.position.x, this.transform.position.y, 42), Quaternion.identity);
+                    Instantiate(splatterd, new Vector3(this.transform.position.x, this.transform.position.y, 41), Quaternion.identity);
                 }
 
                 int randomNumber = Random.Range(1, maxNum);
