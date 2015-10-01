@@ -27,7 +27,7 @@ public class BalloonPop : MonoBehaviour {
 
 	void Start(){
 		i = 0;
-        maxNum = 41;
+        maxNum = 40;
 		numMan = GameObject.Find ("ScriptHolder").GetComponent<NumberManager> ();
         bonusMan = GameObject.Find("ScriptHolder").GetComponent<BonusManager>();
     }
@@ -60,8 +60,8 @@ public class BalloonPop : MonoBehaviour {
                     Instantiate(splatterd, new Vector3(this.transform.position.x, this.transform.position.y, 41), Quaternion.identity);
                 }
 
-                //int randomNumber = Random.Range(1, maxNum);
-                int randomNumber = 41;
+                int randomNumber = Random.Range(1, maxNum);
+                //int randomNumber = 41;
 
                 //int randomNumber = 41;
                 //This will check to make sure only unique numbers are under balloons!
