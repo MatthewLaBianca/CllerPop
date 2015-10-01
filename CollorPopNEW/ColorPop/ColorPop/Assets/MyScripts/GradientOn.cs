@@ -26,7 +26,7 @@ public class GradientOn : MonoBehaviour
 
         while (progress < 1)
         {
-            GetComponent<Image>().color = Color.Lerp(Color.clear, Color.white, progress);
+            GetComponent<Image>().color = Color.Lerp(Color.clear, Color.black, progress);
             progress += increment;
             yield return new WaitForSeconds(smoothness);
         }

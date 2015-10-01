@@ -16,6 +16,10 @@ public class BonusManager : MonoBehaviour {
     public Transform placementThree;
 
 
+
+    public GameObject Bonus2D;
+
+
     private float smoothness = 0.02f;
     private float duration = 1.0f;
 
@@ -30,6 +34,7 @@ public class BonusManager : MonoBehaviour {
 	    if(startBonusGame)
         {
             bonusCanvas.SetActive(true);
+            Bonus2D.SetActive(true);
             StartCoroutine(MoveObject(chestone, placementOne));
             leftSideCanvas.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
             timerandnumbers.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
