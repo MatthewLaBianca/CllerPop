@@ -16,7 +16,7 @@ public class BalloonPop : MonoBehaviour {
 
     //public BonusManager bonusMan;
 
-    private int maxNum;
+    public int maxNum;
     
 	private NumberManager numMan;
 
@@ -27,7 +27,7 @@ public class BalloonPop : MonoBehaviour {
 
 	void Start(){
 		i = 0;
-        maxNum = 40;
+        maxNum = 41;
 		numMan = GameObject.Find ("ScriptHolder").GetComponent<NumberManager> ();
         bonusMan = GameObject.Find("ScriptHolder").GetComponent<BonusManager>();
     }
@@ -57,6 +57,7 @@ public class BalloonPop : MonoBehaviour {
                     float rndRot = Random.Range(0, 360);
                     splatterd.transform.localScale = new Vector3(rndSize, rndSize, rndSize);
                     splatterd.transform.rotation = new Quaternion(0, 0, rndRot, 0);
+                    Debug.Log(rndRot);
                     Instantiate(splatterd, new Vector3(this.transform.position.x, this.transform.position.y, 41), Quaternion.identity);
                 }
 
@@ -90,6 +91,7 @@ public class BalloonPop : MonoBehaviour {
                 if(randomNumber >= 41)
                 {
                     bonusMan.startBonusGame = true;
+                    maxNum = 40;
                     Debug.Log("YAY BONUS");
                 }
                 numMan.CheckMatches();

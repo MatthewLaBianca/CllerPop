@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class LoseScript : MonoBehaviour {
@@ -19,6 +20,8 @@ public class LoseScript : MonoBehaviour {
     public Text tic4;
     public Text tic5;
 
+    public List<GameObject> stuffToToggle = new List<GameObject>();
+
 
     public class WinningStuff
     {
@@ -29,6 +32,8 @@ public class LoseScript : MonoBehaviour {
         private Color winLoseColor;
         private string winString = "WINNER!";
         private string loseString = "Try Again";
+
+        private bool win;
         public WinningStuff()
         {
             winLoseColor = Color.green;
@@ -38,6 +43,10 @@ public class LoseScript : MonoBehaviour {
             numOfDarts = drts;
         }
 
+        public bool GetWin()
+        {
+            return win;
+        }
         public Color GetColor()
         {
             return winLoseColor;
@@ -59,23 +68,27 @@ public class LoseScript : MonoBehaviour {
                         actualPrize = 0;
                         winLoseStrng = loseString;
                         winLoseColor = Color.red;
+                        win = false;
                     }
                     if (matches == 1)
                     {
                         actualPrize = 0;
                         winLoseStrng = loseString;
+                        win = false;
                         winLoseColor = Color.red;
                     }
                     if (matches == 2)
                     {
                         actualPrize = 1;
                         winLoseStrng = winString;
+                        win = true;
                         winLoseColor = Color.green;
                     }
                     if(matches == 3)
                     {
                         actualPrize = 5;
                         winLoseStrng = winString;
+                        win = true;
                         winLoseColor = Color.green;
                     }
                     break;
@@ -84,30 +97,35 @@ public class LoseScript : MonoBehaviour {
                     {
                         actualPrize = 0;
                         winLoseStrng = loseString;
+                        win = false;
                         winLoseColor = Color.red;
                     }
                     else if (matches == 1)
                     {
                         actualPrize = 0;
                         winLoseStrng = loseString;
+                        win = false;
                         winLoseColor = Color.red;
                     }
                     else if (matches == 2)
                     {
                         actualPrize = 1;
                         winLoseStrng = winString;
+                        win = true;
                         winLoseColor = Color.green;
                     }
                     else if (matches == 3)
                     {
                         actualPrize = 2;
                         winLoseStrng = winString;
+                        win = true;
                         winLoseColor = Color.green;
                     }
                     else if (matches == 4)
                     {
                         actualPrize = 25;
                         winLoseStrng = winString;
+                        win = true;
                         winLoseColor = Color.green;
                     }
                     break;
@@ -116,36 +134,42 @@ public class LoseScript : MonoBehaviour {
                     {
                         actualPrize = 0;
                         winLoseStrng = loseString;
+                        win = false;
                         winLoseColor = Color.red;
                     }
                     else if (matches == 1)
                     {
                         actualPrize = 1;
                         winLoseStrng = winString;
+                        win = true;
                         winLoseColor = Color.green;
                     }
                     else if (matches == 2)
                     {
                         actualPrize = 2;
                         winLoseStrng = winString;
+                        win = true;
                         winLoseColor = Color.green;
                     }
                     else if (matches == 3)
                     {
                         actualPrize = 10;
                         winLoseStrng = winString;
+                        win = true;
                         winLoseColor = Color.green;
                     }
                     else if (matches == 4)
                     {
                         actualPrize = 20;
                         winLoseStrng = winString;
+                        win = true;
                         winLoseColor = Color.green;
                     }
                     else if (matches == 5)
                     {
                         actualPrize = 50;
                         winLoseStrng = winString;
+                        win = true;
                         winLoseColor = Color.green;
                     }
                     break;
@@ -171,6 +195,20 @@ public class LoseScript : MonoBehaviour {
         winnings.text = "$" + winningstuff.GetWinnings(numMan.GetNumbersMatched()).ToString();  //Output the winnings
         winOrLose.color = winningstuff.GetColor();              //win or lose color for the winner/loser text
         winOrLose.text = winningstuff.GetWinLoseString();       //display the text for winner/Loser on screen
+
+        if(!winningstuff.GetWin())
+        {
+            foreach(GameObject obj in stuffToToggle)
+            {
+                obj.SetActive(false);
+            }
+        }else
+        {
+            foreach(GameObject obj in stuffToToggle)
+            {
+                obj.SetActive(true);
+            }
+        }
 	}
 
 

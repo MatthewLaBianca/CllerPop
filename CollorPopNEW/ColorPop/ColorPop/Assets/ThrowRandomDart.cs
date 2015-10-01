@@ -13,17 +13,30 @@ public class ThrowRandomDart : MonoBehaviour {
     public Text balance;
     public List<GameObject> drts = new List<GameObject>();
 
+    public Button throwDrtBttn;
+
     public BonusManager bonusMan;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    public BalloonPop ballonPopMan;
+   
+    // Use this for initialization
+    void Start () {
+        
+    }
 
+    // Update is called once per frame
+    void Update () {
+        if (bonusMan.startBonusGame)
+        {
+            TimerBeforeThrowable(4.0f);
+        }
 	}
-
+    IEnumerator TimerBeforeThrowable(float timeToWait)
+    {
+        throwDrtBttn.interactable = false;
+        yield return new WaitForSeconds(timeToWait);
+        throwDrtBttn.interactable = true;
+        yield return 0;
+    }
     IEnumerator ReturnToGame(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
@@ -35,6 +48,7 @@ public class ThrowRandomDart : MonoBehaviour {
     {
         int rand = Random.Range(0, drts.Capacity);
         drts[rand].SetActive(true);
+        throwDrtBttn.interactable = false;
         if(rand == 0)
         {
             Jackpot.SetActive(true);
@@ -43,14 +57,16 @@ public class ThrowRandomDart : MonoBehaviour {
             flare.SetActive(true);
             balance.text = "$1130";
             StartCoroutine(ReturnToGame(4.3f));
+            ballonPopMan.maxNum = 40;
         }
         else
         {
             twoTimes.SetActive(true);
             tapTxt.SetActive(false);
             StartCoroutine(ReturnToGame(.8f));
-
+            ballonPopMan.maxNum = 40;
         }
+        
 
     }
 }
