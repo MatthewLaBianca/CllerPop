@@ -48,6 +48,17 @@ public class BonusManager : MonoBehaviour {
             //leftSideCanvas.SetActive(false);
             //timerandnumbers.SetActive(false);
         }
+        else
+        {
+            foreach(GameObject obj in objectsToToggle)
+            {
+                obj.SetActive(true);
+            }
+            leftSideCanvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
+            timerandnumbers.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
+            bonusCanvas.SetActive(false);
+            Bonus2D.SetActive(false);
+        }
 	}
 
     IEnumerator MoveObject(GameObject objFrom, Transform objTo)
