@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BonusManager : MonoBehaviour {
 
@@ -15,8 +16,6 @@ public class BonusManager : MonoBehaviour {
     public Transform placementTwo;
     public Transform placementThree;
 
-
-
     public GameObject Bonus2D;
 
 
@@ -24,6 +23,10 @@ public class BonusManager : MonoBehaviour {
     private float duration = 1.0f;
 
     public GameObject bonusCanvas;
+
+    public List<GameObject> objectsToToggle = new List<GameObject>();
+
+
 	// Use this for initialization
 	void Start () {
         startBonusGame = false;
@@ -35,6 +38,10 @@ public class BonusManager : MonoBehaviour {
         {
             bonusCanvas.SetActive(true);
             Bonus2D.SetActive(true);
+            foreach(GameObject obj in objectsToToggle)
+            {
+                obj.SetActive(false);
+            }
             StartCoroutine(MoveObject(chestone, placementOne));
             leftSideCanvas.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
             timerandnumbers.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
