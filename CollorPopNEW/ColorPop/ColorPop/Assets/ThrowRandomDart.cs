@@ -12,15 +12,21 @@ public class ThrowRandomDart : MonoBehaviour {
     public GameObject flare;
     public Text balance;
     public List<GameObject> drts = new List<GameObject>();
-
+    
     public Button throwDrtBttn;
 
     public BonusManager bonusMan;
     public BalloonPop ballonPopMan;
+    public TicketManager tixMan;
+
+    public bool timesTwo;
+
+    public int multiplier;
    
     // Use this for initialization
     void Start () {
-        
+        timesTwo = false;
+        multiplier = 1;
     }
 
     // Update is called once per frame
@@ -41,14 +47,21 @@ public class ThrowRandomDart : MonoBehaviour {
     {
         yield return new WaitForSeconds(timeToWait);
         bonusMan.startBonusGame = false;
+        if(tixMan.readyToEnd)
+        {
+            tixMan.OutOfTicketsLOSEAfterBonus();
+            yield return 0;
+        }
         yield return 0;
     }
-
+    public void ResetMultiplier()
+    {
+        multiplier = 1;
+    }
     public void ThrowDart()
     {
         int rand = Random.Range(0, drts.Capacity);
         drts[rand].SetActive(true);
-        throwDrtBttn.interactable = false;
         if(rand == 0)
         {
             Jackpot.SetActive(true);
@@ -61,6 +74,7 @@ public class ThrowRandomDart : MonoBehaviour {
         }
         else
         {
+            multiplier = 2;
             twoTimes.SetActive(true);
             tapTxt.SetActive(false);
             StartCoroutine(ReturnToGame(.8f));

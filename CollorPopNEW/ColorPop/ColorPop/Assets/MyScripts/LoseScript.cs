@@ -20,6 +20,8 @@ public class LoseScript : MonoBehaviour {
     public Text tic4;
     public Text tic5;
 
+    public ThrowRandomDart checkMultiplier;
+
     public List<GameObject> stuffToToggle = new List<GameObject>();
 
 
@@ -192,7 +194,9 @@ public class LoseScript : MonoBehaviour {
         
         winningstuff.SetDarts(dartMan.GetInitDarts());          //this tells the Winnings class how many darts there were at the beginning
         matches.text = numMan.GetNumbersMatched().ToString();   //how many matches were there?
-        winnings.text = "$" + winningstuff.GetWinnings(numMan.GetNumbersMatched()).ToString();  //Output the winnings
+
+        winnings.text = "$" + (winningstuff.GetWinnings(numMan.GetNumbersMatched())*checkMultiplier.multiplier).ToString();  //Output the winnings
+
         winOrLose.color = winningstuff.GetColor();              //win or lose color for the winner/loser text
         winOrLose.text = winningstuff.GetWinLoseString();       //display the text for winner/Loser on screen
 

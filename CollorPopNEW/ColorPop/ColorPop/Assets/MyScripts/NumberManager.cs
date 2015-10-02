@@ -19,6 +19,9 @@ public class NumberManager : MonoBehaviour {
 	public DartManager dartMan;
     public TicketManager tixMan;
 
+    public int maxNumberGeneration;
+
+
     public int i;
 
     public int ticketNumber;
@@ -39,8 +42,9 @@ public class NumberManager : MonoBehaviour {
 		fifSpot = false;
         i = 0;
         ticketNumber = 1;
+
+
 	}
-	
     void Update()
     {
         TicOneTxt = GameObject.Find("TextTic" + ticketNumber.ToString()).GetComponent<Text>();

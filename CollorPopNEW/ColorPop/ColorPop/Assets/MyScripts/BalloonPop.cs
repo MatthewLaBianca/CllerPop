@@ -13,7 +13,6 @@ public class BalloonPop : MonoBehaviour {
 
 	public AudioClip popSound;
 	public AudioSource source;
-
     //public BonusManager bonusMan;
 
     public int maxNum;
@@ -22,83 +21,93 @@ public class BalloonPop : MonoBehaviour {
 
 	public DartManager dartMan;
     private BonusManager bonusMan;
+    private GenerationOfNumbers numGenClass;
 
     //public GameObject bonusCanvas;
 
 	void Start(){
+
 		i = 0;
         maxNum = 41;
 		numMan = GameObject.Find ("ScriptHolder").GetComponent<NumberManager> ();
         bonusMan = GameObject.Find("ScriptHolder").GetComponent<BonusManager>();
+        numGenClass = GameObject.Find("ScriptHolder").GetComponent<GenerationOfNumbers>();
     }
 	void Update()
 	{
-
+        
 	}
 	//public GameObject instantiatedObj;
 	void OnMouseDown()
 	{
-        if (!numMan.OutOfTix)
+
+        if (!bonusMan.startBonusGame)
         {
-            if (!numMan.OutOfDarts)
+            if (!numMan.OutOfTix)
             {
-                source.Play ();
-                //colors = Random.Range(1, 4);
-                splatter(colors);
-
-                //splatter1.GetComponent<Renderer>().enabled = true;
-                //splatter2.GetComponent<Renderer>().enabled = true;
-
-                GameObject splatterd = Resources.Load("P" + Random.Range(1,15).ToString(), typeof(GameObject)) as GameObject;
-                if (splatterd != null)
+                if (!numMan.OutOfDarts)
                 {
-                    Debug.Log("SPLATTAD");
-                    float rndSize = Random.Range(1.5f, 2.5f);
-                    float rndRot = Random.Range(0, 360);
-                    splatterd.transform.localScale = new Vector3(rndSize, rndSize, rndSize);
-                    splatterd.transform.rotation = new Quaternion(0, 0, rndRot, 0);
-                    Debug.Log(rndRot);
-                    Instantiate(splatterd, new Vector3(this.transform.position.x, this.transform.position.y, 41), Quaternion.identity);
-                }
+                    source.Play();
+                    //colors = Random.Range(1, 4);
+                    splatter(colors);
 
-                int randomNumber = Random.Range(1, maxNum);
-                //int randomNumber = 41;
+                    //splatter1.GetComponent<Renderer>().enabled = true;
+                    //splatter2.GetComponent<Renderer>().enabled = true;
 
-                //int randomNumber = 41;
-                //This will check to make sure only unique numbers are under balloons!
-                while (numMan.numbers.Contains(randomNumber))
-                {
-                    //keep the numbers in bounds
-                    if (randomNumber < maxNum)
+                    GameObject splatterd = Resources.Load("P" + Random.Range(1, 15).ToString(), typeof(GameObject)) as GameObject;
+                    if (splatterd != null)
                     {
-                        randomNumber++;
+                        Debug.Log("SPLATTAD");
+                        float rndSize = Random.Range(1.5f, 2.5f);
+                        float rndRot = Random.Range(0, 360);
+                        splatterd.transform.localScale = new Vector3(rndSize, rndSize, rndSize);
+                        splatterd.transform.rotation = new Quaternion(0, 0, rndRot, 0);
+                        Instantiate(splatterd, new Vector3(this.transform.position.x, this.transform.position.y, 41), Quaternion.identity);
                     }
+                    
                     else
                     {
-                        randomNumber--;
+                        numGenClass.SetMaxNum(numGenClass.GetInitMaxNum());
                     }
-                    Debug.Log("CHANGED to a: " + randomNumber);
+                    int randomNumber = Random.Range(1, numGenClass.GetMaxNum());
+                    //int randomNumber = 41;
+
+                    //int randomNumber = 41;
+                    //This will check to make sure only unique numbers are under balloons!
+                    while (numMan.numbers.Contains(randomNumber))
+                    {
+                        //keep the numbers in bounds
+                        if (randomNumber < numGenClass.GetMaxNum())
+                        {
+                            randomNumber++;
+                        }
+                        else
+                        {
+                            randomNumber--;
+                        }
+                        Debug.Log("CHANGED to a: " + randomNumber);
+                    }
+                    //set the object to the correct number
+                    GameObject Number = Resources.Load(randomNumber.ToString(), typeof(GameObject)) as GameObject;
+                    //add the number to the linked list
+                    numMan.numbers.Add(randomNumber);
+                    //when its finally set, draw the number on the screen
+                    if (Number != null)
+                    {
+                        Instantiate(Number, new Vector3(this.transform.position.x, this.transform.position.y, 40), Quaternion.identity);
+                    }
+                    if (randomNumber >= 41)
+                    {
+                        bonusMan.startBonusGame = true;
+                        numGenClass.SetMaxNum(40);
+                        numGenClass.SetAlreadyBonus(true);
+                        Debug.Log("YAY BONUS");
+                    }
+                    numMan.CheckMatches();
+                    SwitchBalloon(false);
                 }
-                //set the object to the correct number
-                GameObject Number = Resources.Load(randomNumber.ToString(), typeof(GameObject)) as GameObject;
-                //add the number to the linked list
-                numMan.numbers.Add(randomNumber);
-                //when its finally set, draw the number on the screen
-                if (Number != null)
-                {
-                    Instantiate(Number, new Vector3(this.transform.position.x, this.transform.position.y, 40), Quaternion.identity);
-                }
-                if(randomNumber >= 41)
-                {
-                    bonusMan.startBonusGame = true;
-                    maxNum = 40;
-                    Debug.Log("YAY BONUS");
-                }
-                numMan.CheckMatches();
-                SwitchBalloon(false);
             }
         }
-
 	}
 
 	private void splatter(int color)
